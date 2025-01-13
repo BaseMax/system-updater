@@ -46,16 +46,17 @@ python update_system.py
 The script will automatically detect your operating system and proceed with checking for updates. You will be asked if you want to proceed with the update.
 
 ## What the Script Does
-- Displays system information: The script will show relevant information based on your operating system.
-- Backs up critical files: The script will back up important system configuration files before attempting updates.
-- Checks for updates: The script will check for any available updates depending on your system's operating system and distribution.
-- Performs updates: If you agree to proceed, the script will initiate the update process for your system.
+
+- **Displays system information:** The script will show relevant information based on your operating system.
+- **Backs up critical files:** The script will back up important system configuration files before attempting updates.
+- **Checks for updates:** The script will check for any available updates depending on your system's operating system and distribution.
+- **Performs updates:** If you agree to proceed, the script will initiate the update process for your system.
 
 ### Supported Operating Systems
 
-- **Windows: Uses ms-settings:windowsupdate to check for and initiate updates.
-- **macOS: Uses softwareupdate to install available updates.
-- **Linux: Supports major Linux distributions, including:
+- **Windows:** Uses ms-settings:windowsupdate to check for and initiate updates.
+- **macOS:** Uses softwareupdate to install available updates.
+- **Linux:** Supports major Linux distributions, including:
   - Ubuntu
   - Debian
   - Fedora
