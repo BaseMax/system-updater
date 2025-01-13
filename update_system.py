@@ -4,6 +4,7 @@ import os
 import shutil
 
 def display_system_info():
+    """Display basic system information like disk usage and memory usage."""
     print("\nSystem Information:")
     print("-------------------")
     try:
@@ -13,6 +14,7 @@ def display_system_info():
         print(f"Error occurred while fetching system info: {e}")
 
 def check_updates_linux(distro):
+    """Check for available updates on Linux based on the distribution."""
     check_commands = {
         'ubuntu': ['sudo', 'apt', 'list', '--upgradable'],
         'debian': ['sudo', 'apt', 'list', '--upgradable'],
@@ -36,6 +38,7 @@ def check_updates_linux(distro):
         sys.exit(1)
 
 def backup_system_files():
+    """Backup critical system files before performing updates."""
     backup_dir = '/tmp/system_backup'
     os.makedirs(backup_dir, exist_ok=True)
     critical_files = ['/etc/fstab', '/etc/hostname', '/etc/hosts', '/etc/passwd']
@@ -52,6 +55,7 @@ def backup_system_files():
         sys.exit(1)
 
 def update_linux(distro):
+    """Update Linux system based on the distribution."""
     update_commands = {
         'ubuntu': ['sudo', 'apt', 'update', '&&', 'sudo', 'apt', 'upgrade', '-y'],
         'debian': ['sudo', 'apt', 'update', '&&', 'sudo', 'apt', 'upgrade', '-y'],
@@ -79,6 +83,7 @@ def update_linux(distro):
         sys.exit(1)
 
 def update_macos():
+    """Update macOS using the built-in softwareupdate tool."""
     try:
         print("Updating system using softwareupdate...")
         subprocess.run(['sudo', 'softwareupdate', '--install', '--all'], check=True)
@@ -87,10 +92,12 @@ def update_macos():
         sys.exit(1)
 
 def update_unix():
+    """Handle updates for other Unix-based systems."""
     print("Unix-based system updates are not yet supported.")
     sys.exit(1)
 
 def detect_os():
+    """Detect the operating system and return the distribution name."""
     if sys.platform == 'darwin':
         return 'macos'
     elif sys.platform in ['linux', 'linux2']:
@@ -108,6 +115,7 @@ def detect_os():
         return 'unknown'
 
 def main():
+    """Main function to manage the update process."""
     os_type = detect_os()
 
     display_system_info()
