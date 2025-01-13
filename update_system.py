@@ -2,8 +2,9 @@ import subprocess
 import sys
 import os
 import shutil
+from typing import Optional
 
-def display_system_info():
+def display_system_info() -> None:
     print("\nSystem Information:")
     print("-------------------")
     
@@ -27,7 +28,7 @@ def display_system_info():
     else:
         print("Unsupported platform")
 
-def check_updates_linux(distro):
+def check_updates_linux(distro: str) -> None:
     check_commands = {
         'ubuntu': ['sudo', 'apt', 'list', '--upgradable'],
         'debian': ['sudo', 'apt', 'list', '--upgradable'],
@@ -50,7 +51,7 @@ def check_updates_linux(distro):
         print(f"Error occurred while checking updates: {e}")
         sys.exit(1)
 
-def backup_system_files():
+def backup_system_files() -> None:
     backup_dir = '/tmp/system_backup'
     os.makedirs(backup_dir, exist_ok=True)
     critical_files = ['/etc/fstab', '/etc/hostname', '/etc/hosts', '/etc/passwd']
@@ -66,7 +67,7 @@ def backup_system_files():
         print(f"Error occurred while backing up files: {e}")
         sys.exit(1)
 
-def update_linux(distro):
+def update_linux(distro: str) -> None:
     update_commands = {
         'ubuntu': ['sudo', 'apt', 'update', '&&', 'sudo', 'apt', 'upgrade', '-y'],
         'debian': ['sudo', 'apt', 'update', '&&', 'sudo', 'apt', 'upgrade', '-y'],
@@ -93,7 +94,7 @@ def update_linux(distro):
         print(e)
         sys.exit(1)
 
-def update_macos():
+def update_macos() -> None:
     try:
         print("Updating system using softwareupdate...")
         subprocess.run(['sudo', 'softwareupdate', '--install', '--all'], check=True)
@@ -101,7 +102,7 @@ def update_macos():
         print(f"Error occurred while updating macOS: {e}")
         sys.exit(1)
 
-def update_windows():
+def update_windows() -> None:
     try:
         print("Updating Windows system...")
         subprocess.run(['powershell', 'Start-Process', 'ms-settings:windowsupdate'], check=True)
@@ -109,11 +110,11 @@ def update_windows():
         print(f"Error occurred while updating Windows: {e}")
         sys.exit(1)
 
-def update_unix():
+def update_unix() -> None:
     print("Unix-based system updates are not yet supported.")
     sys.exit(1)
 
-def detect_os():
+def detect_os() -> str:
     if sys.platform == 'darwin':
         return 'macos'
     elif sys.platform == 'win32':
@@ -132,7 +133,7 @@ def detect_os():
     else:
         return 'unknown'
 
-def main():
+def main() -> None:
     os_type = detect_os()
 
     display_system_info()
